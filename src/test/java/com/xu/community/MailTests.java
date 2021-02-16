@@ -1,5 +1,7 @@
 package com.xu.community;
 
+import com.xu.community.entity.User;
+import com.xu.community.service.UserService;
 import com.xu.community.util.MailClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,9 @@ public class MailTests {
     @Autowired
     private TemplateEngine templateEngine;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     public void testTextMail(){
         mailClient.sendMail("xu253394699@163.com","Test1","Welcome");
@@ -35,5 +40,11 @@ public class MailTests {
         System.out.println(content);
 
         mailClient.sendMail("xu253394699@163.com","HTML",content);
+    }
+
+    @Test
+    public void insertUser() {
+
+        userService.register(new User("admin","123456","253394699@qq.com"));
     }
 }

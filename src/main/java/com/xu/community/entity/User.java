@@ -23,4 +23,9 @@ public class User {
     private String headerUrl;
     private Date createTime;
 
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
 }

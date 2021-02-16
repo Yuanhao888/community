@@ -17,12 +17,15 @@ import java.util.List;
 class CommunityApplicationTests {
     @Autowired(required = false)
     DiscussPostMapper discussPostMapper;
+
     @Test
-    public void testselectPost(){
+    public void testselectPost() {
         List<DiscussPost> discussposts = discussPostMapper.selectDiscussPosts(0, 0, 10);
         for (DiscussPost discusspost : discussposts) {
             System.out.println(discusspost);
         }
-        int num=discussPostMapper.selectDiscussPostRows(0);
+        int num = discussPostMapper.selectDiscussPostRows(0);
         System.out.println(num);
-}}
+    }
+
+}

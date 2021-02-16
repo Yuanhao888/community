@@ -6,6 +6,29 @@
           id, username,password,salt,email,type,status,activation_code,header_url,create_time
     </sql>
     <select id="selectById" resultType="User" parameterType="Integer">
-        select * from user where id=#{id}
+        select
+        <include refid="selectFields"></include>
+        from user
+        where id=#{id}
     </select>
+
+    <select id="selectByName" resultType="User" parameterType="String">
+        select
+        <include refid="selectFields"></include>
+        from user
+        where username=#{username}
+    </select>
+    <select id="selectByEmail" resultType="User" parameterType="String">
+        select
+        <include refid="selectFields"></include>
+        from user
+        where email=#{email}
+    </select>
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user values(#{id},#{username},#{password},#{salt},#{email},#{type},#{status},#{activationCode},#{headerUrl},#{createTime})
+    </insert>
+    <update id="updateStatus" parameterType="Integer">
+        update status=#{status} from user where id=#{userId}
+    </update>
+
 </mapper>
