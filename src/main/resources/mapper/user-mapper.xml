@@ -28,7 +28,15 @@
         insert into user values(#{id},#{username},#{password},#{salt},#{email},#{type},#{status},#{activationCode},#{headerUrl},#{createTime})
     </insert>
     <update id="updateStatus" parameterType="Integer">
-        update status=#{status} from user where id=#{userId}
+        update user set status=#{status}  where id=#{userId}
     </update>
+    <update id="updateHeader" >
+        update user set header_url=#{headerUrl}  where id=#{userId}
+    </update>
+
+    <update id="updatePassword">
+        update user set password=#{password} where id=#{userId}
+    </update>
+
 
 </mapper>
