@@ -11,7 +11,7 @@ import java.util.*;
 
 @Service
 public class DiscussPostService {
-    @Autowired(required = false)
+    @Autowired
     private DiscussPostMapper discussPostMapper;
 
     @Autowired
@@ -38,6 +38,11 @@ public class DiscussPostService {
         post.setContent(sensitiveFilter.filter(post.getContent()));
 
         return discussPostMapper.insertDiscussPost(post);
+    }
+
+    public DiscussPost findDiscussPostById(int id){
+        return discussPostMapper.selectDiscussPostById(id);
+
     }
 
 }

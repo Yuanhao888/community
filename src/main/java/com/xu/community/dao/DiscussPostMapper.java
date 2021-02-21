@@ -3,10 +3,12 @@ package com.xu.community.dao;
 import com.xu.community.entity.DiscussPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Mapper
+@Component
 public interface DiscussPostMapper {
     List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit);
 
@@ -16,5 +18,5 @@ public interface DiscussPostMapper {
 
     int insertDiscussPost(DiscussPost discussPost);
 
-
+    DiscussPost selectDiscussPostById(int id);
 }
