@@ -6,6 +6,9 @@
     <sql id="selectFields">
           id, user_id,title,content,type,status,create_time,comment_count,score
     </sql>
+    <sql id="insertFields">
+           user_id,title,content,type,status,create_time,comment_count,score
+    </sql>
     <!--状态为2的是黑贴-->
     <select id="selectDiscussPosts"  resultType="DiscussPost">
        select <include refid="selectFields"></include>
@@ -27,4 +30,10 @@
         </if>
 
     </select>
+
+    <insert id="insertDiscussPost" parameterType="DiscussPost">
+        insert into discuss_post(<include refid="insertFields"></include>)
+        values(#{userId},#{title},#{content},#{type},#{status},#{createTime},#{commentCount},#{score})
+
+    </insert>
 </mapper>
