@@ -4,7 +4,9 @@ import com.xu.community.entity.DiscussPost;
 import com.xu.community.entity.Page;
 import com.xu.community.entity.User;
 import com.xu.community.service.DiscussPostService;
+import com.xu.community.service.LikeService;
 import com.xu.community.service.UserService;
+import com.xu.community.util.CommunityConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,7 @@ import java.util.Map;
 
 @Slf4j
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
     @Autowired
     private DiscussPostService discussPostService;
 
@@ -29,6 +31,9 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LikeService likeService;
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String getIndexPage(Model model, Page page){
@@ -42,6 +47,8 @@ public class HomeController {
             for (DiscussPost post : selectDiscussPosts) {
                 Map<String,Object> map=new HashMap();
                 map.put("post",post);
+                long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId());
+                map.put("likeCount",likeCount);
                 User user=userService.findUserById(post.getUserId());
                 map.put("user",user);
                 discussPosts.add(map);

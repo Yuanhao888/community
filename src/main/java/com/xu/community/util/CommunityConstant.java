@@ -28,12 +28,17 @@ public interface CommunityConstant {
 /**
  *  实体类型：帖子
  */
-    int ENTITY_TYE_POST=1;
+    int ENTITY_TYPE_POST=1;
 
     /**
      *  实体类型：评论
      */
-    int ENTITY_TYE_COMMIT=2;
+    int ENTITY_TYPE_COMMIT=2;
+
+    /**
+     * 实体类型：用户
+    */
+    int ENTITY_TYPE_User=3;
 
 
 }
